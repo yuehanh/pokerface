@@ -10,7 +10,6 @@ const generateFlucuations = (lastPrices) => {
     lastPrices[stockTicker] = tickerPrice;
     Price.create({ tickerPrice, stockTicker, time });
   }
-  console.log(lastPrices);
   return lastPrices;
 };
 

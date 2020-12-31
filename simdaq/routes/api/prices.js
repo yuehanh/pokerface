@@ -12,11 +12,15 @@ router.get("/", (req, res) => {
           [Op.gt]: req.query.time,
         },
       },
+      order: [["time", "DESC"]],
     })
-      .then((stocks) => {
-        //stocks table later may contain company info related to the stock. for now it just has its ticker
-        const payload = stocks.map((stock) => ({ ticker: stock.ticker }));
-        return res.json(payload);
+      .then((prices) => {
+        const payload = prices.map((price) => ({
+          time: price.time,
+          ticker: price.stockTicker,
+          tickerPrice: price.tickerPrice,
+        }));
+        res.json(payload);
       })
       .catch((err) => res.status(400).json(err));
   } else {

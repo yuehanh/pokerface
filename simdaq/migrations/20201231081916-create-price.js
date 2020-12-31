@@ -14,7 +14,7 @@ module.exports = {
           type: Sequelize.DECIMAL,
         },
         time: {
-          type: Sequelize.STRING,
+          type: Sequelize.DATE,
         },
         stockId: {
           type: Sequelize.INTEGER,

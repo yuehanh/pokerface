@@ -30,8 +30,8 @@ module.exports = async function stockSimulation() {
       order: [["time", "DESC"]],
       limit: 1,
     });
+    //could also add a formula that fills in all the price simulation since the last timestamp
     lastPrices[stock.ticker] = Number(price[0].tickerPrice);
   }
-  generateFlucuations(lastPrices);
   simulate(lastPrices);
 };

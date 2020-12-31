@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { Stock, Price } = require("../../models");
-const price = require("../../models/price");
 
 router.get("/index", (req, res) => {
   Stock.findAll()

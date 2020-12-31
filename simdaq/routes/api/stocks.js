@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Stock, Price } = require("../../models");
 
-router.get("/index", (req, res) => {
+router.get("/", (req, res) => {
   Stock.findAll()
     .then((stocks) => {
       //stocks table later may contain company info related to the stock. for now it just has its ticker

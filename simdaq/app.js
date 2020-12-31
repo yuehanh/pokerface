@@ -12,3 +12,7 @@ app.listen(port, () => console.log(`Server is running on port ${port}`));
 // Create API routes
 const stocks = require("./routes/api/stocks");
 app.use("/api/stocks", stocks);
+
+//simulation stock price
+const stockSimulation = require("./simulation/stockprice");
+stockSimulation();

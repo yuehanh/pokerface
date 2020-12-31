@@ -1,5 +1,5 @@
 require("dotenv").config();
-
+//use sqlite3 for demo can change to postgres in production
 module.exports = {
   development: {
     dialect: "sqlite",

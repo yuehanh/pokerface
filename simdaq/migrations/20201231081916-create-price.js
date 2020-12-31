@@ -16,8 +16,8 @@ module.exports = {
         time: {
           type: Sequelize.DATE,
         },
-        stockId: {
-          type: Sequelize.INTEGER,
+        stockTicker: {
+          type: Sequelize.STRING,
           allowNull: false,
         },
         createdAt: {
@@ -33,7 +33,7 @@ module.exports = {
         indexes: [
           {
             unique: true,
-            fields: ["time", "stockId"],
+            fields: ["time", "stockTicker"],
           },
         ],
       }

@@ -4,14 +4,9 @@ module.exports = {
     await queryInterface.createTable(
       "Stocks",
       {
-        id: {
-          allowNull: false,
-          autoIncrement: true,
-          primaryKey: true,
-          type: Sequelize.INTEGER,
-        },
         ticker: {
           type: Sequelize.STRING,
+          primaryKey: true,
           allowNull: false,
           unique: true,
         },

@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Price.belongsTo(models.Stock, {
-        foreignKey: "stockId",
+        foreignKey: "stockTicker",
         as: "ticker",
       });
     }
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       tickerPrice: DataTypes.DECIMAL,
       time: DataTypes.DATE,
-      stockId: DataTypes.INTEGER,
+      stockTicker: DataTypes.INTEGER,
     },
     {
       sequelize,

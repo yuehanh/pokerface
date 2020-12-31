@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Stock.hasMany(models.Price, {
-        foreignKey: "stockId",
+        foreignKey: "stockTicker",
         as: "prices",
         onDelete: "CASCADE",
       });
@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       ticker: {
         type: DataTypes.STRING,
         allowNull: false,
+        primaryKey: true,
         unique: true,
       },
     },

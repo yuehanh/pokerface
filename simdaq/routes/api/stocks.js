@@ -1,5 +1,4 @@
 const express = require("express");
-const stock = require("../../models/stock");
 const router = express.Router();
 const { Stock } = require("../../models");
 

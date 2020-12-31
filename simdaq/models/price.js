@@ -18,12 +18,20 @@ module.exports = (sequelize, DataTypes) => {
   Price.init(
     {
       tickerPrice: DataTypes.DECIMAL,
-      time: DataTypes.STRING,
+      time: DataTypes.DATE,
       stockId: DataTypes.INTEGER,
     },
     {
       sequelize,
       modelName: "Price",
+    },
+    {
+      indexes: [
+        {
+          unique: true,
+          fields: ["time", "stockId"],
+        },
+      ],
     }
   );
   return Price;

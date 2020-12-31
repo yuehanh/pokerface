@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
+    "debug": "nodemon --inspect app.js",
     "sequelize": "node_modules/.bin/sequelize"
   },
   "repository": {

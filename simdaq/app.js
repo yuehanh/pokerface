@@ -9,12 +9,6 @@ const port = process.env.PORT || 5000;
 // Test to make sure Express is working
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
-// Connect to the database
-const { Stock } = require("./models");
-const findAll = async () => {
-  console.log("start");
-  const users = await Stock.findAll();
-  console.log("All users:", JSON.stringify(users, null, 4));
-};
-
-findAll();
+// Create API routes
+const stocks = require("./routes/api/stocks");
+app.use("/api/stocks", stocks);

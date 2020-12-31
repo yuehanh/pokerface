@@ -15,9 +15,6 @@ module.exports = {
           allowNull: false,
           unique: true,
         },
-        lastPrice: {
-          type: Sequelize.DECIMAL(10, 2),
-        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,

@@ -23,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
       },
-      lastPrice: DataTypes.DECIMAL(10, 2),
     },
     {
       sequelize,

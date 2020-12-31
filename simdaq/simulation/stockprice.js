@@ -2,24 +2,22 @@ const { Stock, Price } = require("../models");
 
 const generateFlucuations = (lastPrices) => {
   const tickers = Object.keys(lastPrices);
-  for (const ticker of tickers) {
-    const currPrice = Number(lastPrices[ticker]);
+  const time = new Date();
+  for (const stockTicker of tickers) {
+    const currPrice = Number(lastPrices[stockTicker]);
     const adjustment = currPrice * 0.1 * (Math.random() - 0.5);
-    lastPrices[ticker] = (currPrice + adjustment).toFixed(2);
-    console.log(lastPrices);
+    const tickerPrice = (currPrice + adjustment).toFixed(2);
+    lastPrices[stockTicker] = tickerPrice;
+    Price.create({ tickerPrice, stockTicker, time });
   }
+  console.log(lastPrices);
   return lastPrices;
 };
 
-const simulate = (lastPrices) => {
-  const time = new Date();
-  let pricePairs = generateFlucuations(lastPrices);
-  const stockTickers = Object.keys(pricePairs);
-  for (const stockTicker of stockTickers) {
-    const tickerPrice = pricePairs[stockTicker];
-    Price.create({ tickerPrice, stockTicker, time });
-  }
-  setTimeout(() => simulate(pricePairs), 1000); //thinking about making a control gate here to adjust the interval dynamically to approximate actual 1s interval
+const simulate = (pricePairs) => {
+  let lastPrices = generateFlucuations(pricePairs);
+
+  setTimeout(() => simulate(lastPrices), 1000); //thinking about making a control gate here to adjust the interval dynamically to approximate actual 1s interval
 };
 
 module.exports = async function stockSimulation() {

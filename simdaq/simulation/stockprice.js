@@ -6,7 +6,7 @@ const generateFlucuations = (lastPrices) => {
   for (const stockTicker of tickers) {
     const currPrice = Number(lastPrices[stockTicker]);
     const adjustment = currPrice * 0.1 * (Math.random() - 0.5);
-    const tickerPrice = (currPrice + adjustment).toFixed(2);
+    const tickerPrice = Math.max(0, currPrice + adjustment).toFixed(2);
     lastPrices[stockTicker] = tickerPrice;
     Price.create({ tickerPrice, stockTicker, time });
   }

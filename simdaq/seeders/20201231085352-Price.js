@@ -8,7 +8,7 @@ module.exports = {
         {
           stockTicker: "WATER",
           time: new Date(),
-          tickerPrice: 4.5,
+          tickerPrice: 14.5,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -36,7 +36,7 @@ module.exports = {
         {
           stockTicker: "DIRT",
           time: new Date(),
-          tickerPrice: 0.25,
+          tickerPrice: 11.44,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

@@ -15,7 +15,7 @@
     "start": "concurrently \"npm run app\" \"npm run simdaq\"",
     "install-simdaq": "npm install --prefix simdaq",
     "install-app": "npm run app-install --prefix pokerfaceApp",
-    "install-all": "npm run install-simdaq && npm run install-app"
+    "install-all": "npm install && npm run install-simdaq && npm run install-app"
   },
   "repository": {
     "type": "git",

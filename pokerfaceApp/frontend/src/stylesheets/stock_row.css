@@ -1,0 +1,12 @@
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+tr {
+  padding: 16px 24px;
+  box-sizing: border-box;
+}

@@ -1,15 +1,39 @@
-# Stack
+# Installation
+
+```
+npm run install-all
+```
+
+# Starting the App
+
+```
+npm start
+```
+
+Frontend server is at port localhost:3000
+
+# Stack & Technology
 
 - SQLite (dev) can switch to Postgre (production)
 - Sequelize ORM
 - Express.js
 - Node.js
+- React.js
+- Websocket.js
+
+# Component Interactions
+
+- Simdaq connects to the Pokerface App backend using webhook
+- Pokerface App backend connects to the frontend using websocket allowing bilateral communication
 
 # API Endpoints
 
 ### `stocks`
 
 - `GET /api/stocks` - returns all stocks ticker
+
+For future features:
+
 - `GET /api/stocks/prices` - return price history on requested stock ticker (req.query.ticker)
 - `GET /api/stocks/prices/limited` - return price history on requested stock ticker with a MAX 500 result limit
 

@@ -1,5 +1,4 @@
 const express = require("express");
-const initializeCacheMap = require("./cache/price_cache");
 const bodyParser = require("body-parser");
 const app = express();
 
@@ -15,7 +14,5 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Create API routes
-const stocks = require("./routes/api/stocks");
-app.use("/api/stocks", stocks);
-
-initializeCacheMap();
+const prices = require("./routes/api/prices");
+app.use("/api/prices", prices);

@@ -17,7 +17,7 @@ const generateFluctuations = (lastPrices) => {
 const simulate = (pricePairs) => {
   let payload = generateFluctuations(pricePairs);
   axios
-    .post("http://localhost:4000/api/stocks/", payload)
+    .post("http://localhost:4000/api/prices/", payload)
     .catch((err) => console.log(err));
 
   setTimeout(() => simulate(payload.lastPrices), 1000);

@@ -15,7 +15,7 @@
 
 ### `prices`
 
-- `GET /api/prices` - return all prices generated after a specified time (req.query.time)
+- `GET /api/prices` - return all prices generated after a specified time (req.query.time) or most recent 500 prices(if no time query sent)
 
 Note: Sequelize use bind parameters to prevent injection attack
 

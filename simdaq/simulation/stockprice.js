@@ -21,7 +21,7 @@ const simulate = (pricePairs) => {
     .catch((err) => console.log(err));
 
   setTimeout(() => simulate(payload.lastPrices), 1000);
-  //thinking about making a control gate here to adjust the interval dynamically to approximate actual 1s interval
+  //Can make a control gate here to adjust the interval dynamically to approximate actual 1s interval
 };
 
 module.exports = async function stockSimulation() {

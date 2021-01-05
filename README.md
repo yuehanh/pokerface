@@ -65,3 +65,110 @@ Note: Sequelize use bind parameters to prevent injection attack
 | `updated_at`  | datetime  | not null                       |
 
 - `prices` belongs to `stocks` through `stockTicker` foreign key
+
+# Features
+
+## Stock Price Simulation
+
+```js
+const generateFluctuations = (lastPrices) => {
+  const tickers = Object.keys(lastPrices);
+  const time = new Date();
+  for (const stockTicker of tickers) {
+    const currPrice = Number(lastPrices[stockTicker]);
+    const fluctuation = currPrice * 0.1 * (Math.random() - 0.5);
+    const tickerPrice = Math.max(0, currPrice + fluctuation).toFixed(2);
+    lastPrices[stockTicker] = tickerPrice;
+    Price.create({ tickerPrice, stockTicker, time });
+  }
+  return { lastPrices, time };
+};
+
+const simulate = (pricePairs) => {
+  let payload = generateFluctuations(pricePairs);
+  axios
+    .post("http://localhost:4000/api/prices/", payload)
+    .catch((err) => console.log(err));
+
+  setTimeout(() => simulate(payload.lastPrices), 1000);
+  //Can make a control gate here to adjust the interval dynamically to approximate actual 1s interval
+};
+```
+
+## Websocket
+
+## Server Side
+
+```js
+const wss = new WebSocket.Server({ port: 8080 });
+wss.on("connection", function connection(ws) {
+  ws.on("message", function incoming(message) {
+    console.log("received: %s", message);
+  });
+
+  ws.send("connecting");
+});
+```
+
+## Server Broacasting
+
+```js
+...
+const tickers = Object.keys(lastPrices);
+  for (const stockTicker of tickers) {
+    const tickerPrice = lastPrices[stockTicker];
+    try {
+      Price.create({ tickerPrice, stockTicker, time });
+      wss.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+          client.send(JSON.stringify({ lastPrices, time }));
+        }
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  }
+...
+```
+
+## Frontend Client
+
+```js
+useEffect(() => {
+  ws.current = new WebSocket("ws://localhost:8080");
+  ws.current.onopen = () => console.log("ws opened");
+  ws.current.onclose = () => console.log("ws closed");
+
+  return () => {
+    ws.current.close();
+  };
+}, []);
+
+useEffect(() => {
+  if (!ws.current) return;
+
+  ws.current.onmessage = (e) => {
+    const message = JSON.parse(e.data);
+    const { lastPrices, time } = message;
+    const stocks = Object.keys(lastPrices);
+    const newStockData = Object.assign({}, stockData);
+    newStockData["updateTime"] = newStockData.updateTime || [];
+    const lastUpdateTime = newStockData.updateTime.slice(-1)[0];
+    if (time !== lastUpdateTime) {
+      newStockData["updateTime"].push(time);
+      for (const stock of stocks) {
+        if (newStockData[stock]) {
+          newStockData[stock].push(lastPrices[stock]);
+          if (newStockData[stock].length > 50) {
+            newStockData[stock].shift();
+          }
+        } else {
+          newStockData[stock] = [lastPrices[stock]];
+        }
+      }
+      setStockData(newStockData);
+    }
+  };
+});
+```

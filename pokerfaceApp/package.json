@@ -5,9 +5,12 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "server": "nodemon app.js",
+    "backend": "nodemon app.js",
     "debug": "nodemon --inspect app.js",
-    "sequelize": "node_modules/.bin/sequelize"
+    "sequelize": "node_modules/.bin/sequelize",
+    "frontend-install": "npm install --prefix frontend",
+    "frontend": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run debug\" \"npm run frontend\""
   },
   "keywords": [],
   "author": "",

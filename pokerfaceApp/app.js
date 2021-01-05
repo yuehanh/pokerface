@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const http = require("http");
+const WebSocket = require("ws");
 const app = express();
 
 app.get("/", (req, res) => res.send("Welcome to Pokerface"));
@@ -12,6 +14,17 @@ app.listen(port, () => console.log(`Server is running on port ${port}`));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+//setup websocket
+const wss = new WebSocket.Server({ port: 8080 });
+wss.on("connection", function connection(ws) {
+  ws.on("message", function incoming(message) {
+    console.log("received: %s", message);
+  });
+
+  ws.send("connecting");
+});
+module.exports = wss;
 
 // Create API routes
 const prices = require("./routes/api/prices");

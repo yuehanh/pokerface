@@ -1,0 +1,31 @@
+{
+  "name": "pokerface",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "concurrently": "^5.3.0",
+    "node-cache": "^5.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "simdaq": "npm run simdaq --prefix simdaq",
+    "app": "npm run app --prefix pokerfaceApp",
+    "start": "concurrently \"npm run app\" \"npm run simdaq\"",
+    "install-simdaq": "npm install --prefix simdaq",
+    "install-app": "npm run app-install --prefix pokerfaceApp",
+    "install-all": "npm run install-simdaq && npm run install-app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuehanh/pokerface.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuehanh/pokerface/issues"
+  },
+  "homepage": "https://github.com/yuehanh/pokerface#readme"
+}

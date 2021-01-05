@@ -10,18 +10,24 @@
     "sequelize": "node_modules/.bin/sequelize",
     "frontend-install": "npm install --prefix frontend",
     "frontend": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run debug\" \"npm run frontend\""
+    "dev": "concurrently \"npm run debug\" \"npm run frontend\"",
+    "app": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "app-install": "npm install && npm run frontend-install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^5.3.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "node-cache": "^5.1.2",
+    "react-sparklines": "^1.7.0",
+    "recharts": "^2.0.0",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
-    "sqlite3": "^5.0.0"
+    "sqlite3": "^5.0.0",
+    "ws": "^7.4.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
